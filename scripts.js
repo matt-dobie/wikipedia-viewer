@@ -1,3 +1,11 @@
+/*
+  Author: Matthew Dobie
+  Author URL: mattdobie.com
+  Description: Script for Wikipedia Viewer
+  Notes: Search bar design heavily inspired by Vlad Georgescu
+         at http://icanbecreative.com/article/css3-animated-search-box/
+*/
+
 
 // Called when search or close icon is pressed
 function searchToggle(obj, evt) {
@@ -24,6 +32,7 @@ function search(input) {
     $("#results").empty();
     $(".search-box").animate({top: "-50px"}, 300);
 
+    // Get Wikipedia JSON data
     $.getJSON("https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=" + encodeURI(input) + "&callback=?", function(data) {
       
       var articleCount = 0;
@@ -49,6 +58,7 @@ function search(input) {
   }
 
 
+// Main function
 $(document).ready(function() {
   
   // Search when space key is pressed
